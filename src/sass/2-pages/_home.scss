@@ -1,0 +1,166 @@
+.header-style {
+    background-color: #F7941D;
+    margin-bottom: 0 !important;
+    border: 0 !important;
+    border-radius: 0px !important;
+    color: #ffffff;
+}
+
+.header-style-col{
+    color: #ffffff !important;
+    padding: 10px;
+}
+
+.my-title{
+    color:  #F7941D;
+}
+
+.my-content{
+    color:  #F7941D;
+}
+
+.my-button {
+    background-color: #3498DB;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    border-color: white;
+    border: 2px solid;
+    min-width: 150px;
+    color: white;
+}
+
+.my-button:disabled{
+    opacity: 0.5;
+
+}
+
+.my-button:hover {
+    background-color: #296399;
+}
+.my-img-header{
+    max-height: 35px;
+}
+
+.info-text{
+    border-top: 1px solid #F7941D;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 120px;
+    margin-right: 120px;
+    text-align: center;
+}
+
+.my-tab-header{
+    text-align: center;
+}
+.progress-div{
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.progress-my {
+
+    list-style: none;
+    margin: 0;
+    padding: 3px;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    color: #849397;
+    border: 0 !important;
+    border-radius: 0px !important;
+}
+.progress-my > li {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    font-size: 0.8em;
+}
+.progress-my > li:before {
+    content: attr(data-step);
+    display: block;
+    margin: 0 auto;
+    background: #DFE3E4;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    margin-bottom: 0.25em;
+    line-height: 3em;
+    border-radius: 100%;
+    position: relative;
+    z-index: 1000;
+}
+.progress-my > li:after {
+    content: '';
+    position: absolute;
+    display: block;
+    background: #DFE3E4;
+    width: 100%;
+    height: 0.5em;
+    top: 1.25em;
+    left: 50%;
+    margin-left: 1.5em\9;
+    z-index: 1;
+}
+.progress-my > li:last-child:after {
+    display: none;
+}
+.progress-my > li.is-complete {
+    color:  #F7941D;
+}
+.progress-my > li.is-complete:before, .progress-my > li.is-complete:after {
+    color: white;
+    background: #F7941D;
+}
+.progress-my > li.is-active {
+    color: #3498DB;
+}
+.progress-my > li.is-active:before {
+    color: #FFF;
+    background: #3498DB;
+}
+
+/**
+ * Needed for IE8
+ */
+.progress__last:after {
+    display: none !important;
+}
+
+/**
+ * Size Extensions
+ */
+.progress--medium {
+    font-size: 1.5em;
+}
+
+.progress--large {
+    font-size: 2em;
+}
+
+/**
+ * Some Generic Stylings
+ */
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-bottom: 1.5em;
+}
+
+a {
+    color: #3498DB;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    color: #444;
+}

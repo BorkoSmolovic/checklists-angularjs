@@ -1,0 +1,34 @@
+<div class="page-header">
+    <h1>{{vm.todo.user}}'s To Do List
+        <span style="margin-left:25px;" class="label" ng-class="vm.warningLevel()" ng-hide="vm.incompleteCount() == 0">
+            {{vm.incompleteCount()}}
+        </span>
+    </h1>
+</div>
+
+<div class="panel">
+    <div class="input-group">
+        <input class="form-control" ng-model="vm.actionText"/>
+        <span class="input-group-btn">
+        <button class="btn btn-default" ng-click="vm.addNewItem(vm.actionText)">Add</button>
+        </span>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Done</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in vm.todo.items | ExampleFilter: showComplete | orderBy: 'action'">
+            <td>{{item.action}}</td>
+            <td><input type="checkbox" ng-model="item.done"></td>
+            <td>{{item.done}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="margin-top: 30px" class="checkbox-inline">
+        <label><input type="checkbox" ng_model="showComplete">Show Complete</label>
+    </div>
+</div>

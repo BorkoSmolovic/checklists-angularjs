@@ -1,0 +1,11 @@
+// import base
+@import "0-base/vars";
+@import "0-base/mixins";
+@import "0-base/base";
+
+// import parts
+@import "1-parts/footer";
+@import "1-parts/header";
+
+// import pages
+@import "2-pages/home";

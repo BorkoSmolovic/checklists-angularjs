@@ -1,0 +1,21 @@
+<style>
+    .navbar-right {
+        float: right !important;
+        margin-right: 5px;
+    }
+
+    .navbar-text {
+        margin-right: 10px;
+    }
+</style>
+
+<div class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">SPORTS STORE</a>
+    <div class="navbar-right">
+        <div class="navbar-text">
+            <b>Your cart:</b>
+            {{ctrl.itemCountValue }} item(s),
+            {{ctrl.totalValue | currency}}
+        </div>
+        <a class="btn btn-default navbar-btn">Checkout</a></div>
+</div>
