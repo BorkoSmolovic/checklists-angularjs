@@ -1,0 +1,30 @@
+//make rounded borders with margins and padding
+md-select {
+  border-radius: 16px;
+  border: 1px solid lightgrey;
+  margin: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: #8d8d8d;
+  font-weight: bold;
+}
+
+//prepend location icon with styles
+md-select:before {
+  content: "";
+  display: block;
+  background-image: url("../../../src/images/icons/location.svg");
+  background-repeat: no-repeat;
+  margin: 4px 12px 4px -5px;
+  padding-right: 20px;
+}
+
+//move the selected value because of the prepended icon
+md-select > md-select-value {
+  margin-left: -22px
+}
+
+//move the placeholder away from icon
+md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
+  padding-left: 22px;
+}

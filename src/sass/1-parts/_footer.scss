@@ -1,3 +1,31 @@
-.footer-wrapper{
+//higher z index because of other elements
+//footer style
+.footer-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
 
+// footer toolbar style
+.footer-wrapper > md-toolbar {
+  background-color: #ffffff;
+  border-top: 1px solid darkgrey;
+  min-height: unset;
+  height: 50px;
+  align-items: center;
+}
+
+//footer icon style
+.footer-wrapper > md-toolbar > ng-md-icon {
+  min-height: unset;
+  height: 24px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+//footer icon color
+.footer-wrapper > md-toolbar > ng-md-icon > svg {
+  fill: #ee6a20;
 }

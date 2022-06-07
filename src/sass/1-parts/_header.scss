@@ -1,3 +1,27 @@
-.header-wrapper{
+//higher z index because of other elements
+//header style
+.header-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
 
+//header toolbar style
+.header-wrapper > md-toolbar {
+  background-color: #ee6a20;
+  min-height: unset;
+  height: 50px;
+}
+
+//title style
+.header-wrapper > md-toolbar > .md-toolbar-tools > h2 {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+//icon style
+.header-wrapper > md-toolbar > .md-toolbar-tools > .md-button > ng-md-icon > svg {
+  fill: #ffffff;
 }

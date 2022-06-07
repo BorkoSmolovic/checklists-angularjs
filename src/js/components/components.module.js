@@ -8,7 +8,8 @@
         .module('app.components', [
             'app.components.home',
             'app.components.example',
-            'app.components.sportsstore'
+            'app.components.sportsstore',
+            'app.components.checklists',
         ]);
 
 })();

@@ -14,61 +14,111 @@
     <link rel="icon" href="/dist/images/synergysuite_cogs_200x200.gif">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
 
     <!-- vendor:css -->
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css?v=9996"/>
-<link rel="stylesheet" href="bower_components/normalize-css/normalize.css?v=107"/>
-<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css?v=945"/>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css?v=3751"/>
+<link rel="stylesheet" href="bower_components/normalize-css/normalize.css?v=9795"/>
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css?v=3664"/>
 <!-- endinject -->
 
     <!-- angular:css -->
-    <link rel="stylesheet" href="dist/css/main.css?v=4545"/>
+    <link rel="stylesheet" href="dist/css/main.css?v=6358"/>
     <!-- endinject -->
 
     <!-- angular:css -->
-    <link rel="stylesheet" href="dist/css/main.css?v=4545"/>
+    <link rel="stylesheet" href="dist/css/main.css?v=6358"/>
     <!-- endinject -->
 
 </head>
 <body>
 
     <!-- vendor:js -->
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.js?v=4018"></script>
-<script type="text/javascript" src="bower_components/angular/angular.js?v=3269"></script>
-<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js?v=3588"></script>
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js?v=8239"></script>
-<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js?v=2332"></script>
-<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js?v=7294"></script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js?v=6387"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js?v=4337"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js?v=9011"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js?v=1790"></script>
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js?v=8829"></script>
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js?v=5925"></script>
 <!-- endinject -->
 
     <!-- angular:js -->
-    <script type="text/javascript" src="src/js/app.js?v=9600"></script>
-    <script type="text/javascript" src="src/js/core/core.module.js?v=3367"></script>
-    <script type="text/javascript" src="src/js/core/layout/layout.module.js?v=4234"></script>
-    <script type="text/javascript" src="src/js/core/services/services.module.js?v=9205"></script>
-    <script type="text/javascript" src="src/js/core/layout/controllers/layout.controller.js?v=8752"></script>
-    <script type="text/javascript" src="src/js/components/components.module.js?v=3319"></script>
-    <script type="text/javascript" src="src/js/components/example/example.module.js?v=7103"></script>
-    <script type="text/javascript" src="src/js/components/home/home.module.js?v=394"></script>
-    <script type="text/javascript" src="src/js/components/sportsstore/sportsstore.module.js?v=5441"></script>
-    <script type="text/javascript" src="src/js/components/example/example.controller.js?v=4008"></script>
-    <script type="text/javascript" src="src/js/components/sportsstore/sportsstore.controller.js?v=7565"></script>
-    <script type="text/javascript" src="src/js/components/home/controllers/home.controller.js?v=9517"></script>
-    <script type="text/javascript" src="src/js/components/home/controllers/test.controller.js?v=2912"></script>
-    <script type="text/javascript" src="src/js/components/home/services/home.service.js?v=5914"></script>
-    <script type="text/javascript" src="src/js/components/sportsstore/cart/cart.service.js?v=9761"></script>
-    <script type="text/javascript" src="src/js/components/sportsstore/cart/cart-summary.directive.js?v=3940"></script>
-    <script type="text/javascript" src="src/js/components/example/example.filter.js?v=1011"></script>
-    <script type="text/javascript" src="src/js/components/sportsstore/customFilter.filter.js?v=2900"></script>
+    <script type="text/javascript" src="src/js/app.js?v=5388"></script>
+    <script type="text/javascript" src="src/js/core/core.module.js?v=3533"></script>
+    <script type="text/javascript" src="src/js/core/layout/layout.module.js?v=4316"></script>
+    <script type="text/javascript" src="src/js/core/services/services.module.js?v=6230"></script>
+    <script type="text/javascript" src="src/js/core/layout/controllers/layout.controller.js?v=2093"></script>
+    <script type="text/javascript" src="src/js/core/services/user.service.js?v=1100"></script>
+    <script type="text/javascript" src="src/js/components/components.module.js?v=7589"></script>
+    <script type="text/javascript" src="src/js/components/checklists/checklists.module.js?v=6790"></script>
+    <script type="text/javascript" src="src/js/components/example/example.module.js?v=3705"></script>
+    <script type="text/javascript" src="src/js/components/home/home.module.js?v=3055"></script>
+    <script type="text/javascript" src="src/js/components/sportsstore/sportsstore.module.js?v=2069"></script>
+    <script type="text/javascript" src="src/js/components/example/example.controller.js?v=8690"></script>
+    <script type="text/javascript" src="src/js/components/sportsstore/sportsstore.controller.js?v=1833"></script>
+    <script type="text/javascript" src="src/js/components/checklists/controllers/checklists.controller.js?v=7071"></script>
+    <script type="text/javascript" src="src/js/components/home/controllers/home.controller.js?v=5123"></script>
+    <script type="text/javascript" src="src/js/components/home/controllers/test.controller.js?v=8286"></script>
+    <script type="text/javascript" src="src/js/components/checklists/services/checklists.service.js?v=5625"></script>
+    <script type="text/javascript" src="src/js/components/home/services/home.service.js?v=4280"></script>
+    <script type="text/javascript" src="src/js/components/sportsstore/cart/cart.service.js?v=4743"></script>
+    <script type="text/javascript" src="src/js/components/sportsstore/cart/cart-summary.directive.js?v=89"></script>
+    <script type="text/javascript" src="src/js/components/example/example.filter.js?v=1510"></script>
+    <script type="text/javascript" src="src/js/components/sportsstore/customFilter.filter.js?v=8076"></script>
+    <!-- endinject -->
+
+    <!-- angular:js material ui -->
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-aria/angular-aria.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.js"></script>
+    <script src="/node_modules/angular-messages/angular-messages.js"></script>
+    <script src="/node_modules/angular-material/angular-material.js"></script>
+    <!-- endinject -->
+
+    <!-- angular:js material icons-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script>
     <!-- endinject -->
 
     <!-- templates:js -->
-    <script type="text/javascript" src="dist/js/templates.js?v=7868"></script>
+    <script type="text/javascript" src="dist/js/templates.js?v=955"></script>
     <!-- endinject -->
 
     <ui-view></ui-view>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
