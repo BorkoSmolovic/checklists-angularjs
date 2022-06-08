@@ -1,22 +1,24 @@
 <div>
+
     <div layout="row" layout-align="center">
         <md-select
                 ng-model="vm.selectedOutlet"
-                ng-change="vm.onChangeOutlet"
-                ng-model-options="{trackBy: '$value.id'}"
+                ng-change="vm.onChangeOutlet()"
                 placeholder="Outlets"
                 aria-label="Outlets"
-                flex-xs="60"
+                flex-xs="55"
                 flex-gt-xs="40"
                 flex-gt-md="25"
                 flex-gt-lg="15"
         >
             <md-option ng-repeat="outlet in vm.outlets" ng-value="outlet">
-                  {{ outlet.name }}
+                {{ outlet.name }}
             </md-option>
         </md-select>
-
     </div>
+
+        <checklists-row ng-repeat="checklist in vm.checklists" checklist='checklist'></checklists-row>
+
 </div>
 
 

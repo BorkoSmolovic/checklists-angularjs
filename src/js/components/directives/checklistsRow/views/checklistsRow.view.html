@@ -1,0 +1,14 @@
+<div layout="row" layout-align="center">
+
+    <div class="progressCircular" layout="column" flex="auto" layout-align="center center">
+        <md-progress-circular class="back" md-mode="determinate" md-diameter="44" value="100"></md-progress-circular>
+        <md-progress-circular class="front" md-mode="determinate" md-diameter="44" value={{vm.competedPercentage}}></md-progress-circular>
+        <div class="progressNumbers" layout-align="center center">{{vm.completedSubTasks}}/{{vm.totalSubTasks}}</div>
+    </div>
+    <div class="checklistName" layout="column" flex="grow" layout-align="center">
+        {{vm.checklist.name}}
+    </div>
+
+
+
+</div>

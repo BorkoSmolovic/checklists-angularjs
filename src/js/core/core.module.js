@@ -7,6 +7,6 @@
     angular
         .module('app.core', [
             'app.core.layout',
-            'app.core.services'
+            'app.core.services',
         ]);
 })();

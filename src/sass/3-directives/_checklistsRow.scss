@@ -1,0 +1,36 @@
+.progressCircular{
+  padding: 10px;
+  position: relative;
+}
+
+.front{
+  z-index: 2;
+}
+
+.back{
+  position: absolute;
+  offset: 0;
+  z-index: 1;
+}
+
+.progressCircular .front svg path{
+  stroke: #EE6A20;
+}
+
+.progressCircular .back svg path{
+  stroke: #E9E9E9;
+}
+
+
+
+.progressNumbers{
+  position: absolute;
+  font-size: small;
+}
+
+.checklistName{
+  padding-left: 10px;
+  font-size: medium;
+  border-bottom: 1px solid #E9E9E9;
+}
+
