@@ -1,3 +1,7 @@
+.checklistsRow{
+  border-bottom: 1px solid #E9E9E9;
+}
+
 .progressCircular{
   padding: 10px;
   position: relative;
@@ -21,8 +25,6 @@
   stroke: #E9E9E9;
 }
 
-
-
 .progressNumbers{
   position: absolute;
   font-size: small;
@@ -31,6 +33,7 @@
 .checklistName{
   padding-left: 10px;
   font-size: medium;
-  border-bottom: 1px solid #E9E9E9;
 }
+
+
 

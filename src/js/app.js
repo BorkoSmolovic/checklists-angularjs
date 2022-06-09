@@ -11,7 +11,6 @@
             'app.core',
             'app.components',
             'ngMaterial',
-            'ngMdIcons'
         ])
         .config(config)
         .run(run);
@@ -307,7 +306,7 @@
         });
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('syngray')
+            .primaryPalette('synorange')
     }
 
 })();

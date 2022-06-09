@@ -3,24 +3,25 @@
     <header class="header-wrapper" flex>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <md-button class="md-icon-button" aria-label="Menu">
-                    <ng-md-icon icon="menu"></ng-md-icon>
-                </md-button>
-
+                <div>
+                    <i class="fa-solid fa-bars"></i>
+                </div>
                 <h2 flex md-truncate>Checklists</h2>
-
-                <md-button class="md-icon-button">
-                    <ng-md-icon icon="filter_list" aria-label="Filter"></ng-md-icon>
-                </md-button>
+                <div>
+                    <i class="fa-solid fa-filter"></i>
+                </div>
             </div>
         </md-toolbar>
     </header>
 
-        <ui-view class="content-wrapper" name="content"></ui-view>
+<!--    <div class="spinner" ng-show="loading"></div>-->
+    <ui-view class="content-wrapper" name="content"></ui-view>
 
     <footer class="footer-wrapper" flex>
         <md-toolbar>
-                <ng-md-icon icon="home" aria-label="Home"></ng-md-icon>
+            <div>
+                <i class="fa-solid fa-house-chimney"></i>
+            </div>
         </md-toolbar>
     </footer>
 

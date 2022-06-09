@@ -16,38 +16,39 @@
         vm.outlets = outlets;
         vm.selectedOutlet = null;
         vm.checklists = [];
-        vm.onChangeOutlet = onChangeOutlet;
+        vm.showAddChecklistButton = true;
+        vm.newChecklist = ''
+        vm.getOutlets = getOutlets;
+        vm.onChecklistAdd = onChecklistAdd;
+        vm.onAddBtnPress = onAddBtnPress;
         vm.test = test;
 
-        function onChangeOutlet() {
+        function getOutlets() {
             ChecklistsService.loadChecklists(vm.selectedOutlet).then(function (data) {
                 vm.checklists = data;
+                vm.showAddChecklistButton = true;
+                vm.newChecklist = '';
+
+            })
+        }
+
+        function onAddBtnPress() {
+            vm.showAddChecklistButton = false;
+        }
+
+        function onChecklistAdd() {
+            let data = {
+                name: vm.newChecklist,
+                validDays: 'montuewedthufrisatsun',
+                companyId: vm.selectedOutlet.id,
+            }
+            ChecklistsService.addNewChecklist(data).then(function () {
+                getOutlets();
             })
         }
 
         function test() {
             console.log('test', vm.checklists)
-        }
-
-        vm.menuSettings = {
-            enhance: true,
-            actions: [{
-                icon: 'settings',
-                action: function (event, inst) {
-                    mobiscroll.toast({
-                        message: 'Settings'
-                    });
-                }
-            },
-                {
-                    icon: 'remove',
-                    undo: true,
-                    action: function (event, inst) {
-                        $scope.$apply(function () {
-                            $scope.menuImages.splice(event.index, 1);
-                        });
-                    }
-                }]
         }
     }
 })();

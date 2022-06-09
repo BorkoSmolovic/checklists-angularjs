@@ -17,6 +17,7 @@
             getCurrentBusinessDate: getCurrentBusinessDate,
             getChecklists: getChecklists,
             loadChecklists: loadChecklists,
+            addNewChecklist: addNewChecklist,
         }
         return factory;
 
@@ -67,6 +68,20 @@
                 getChecklists(outlet, response).then(function(data){
                     deferred.resolve(data)
                 });
+            });
+            return deferred.promise;
+        }
+
+        function addNewChecklist(data){
+            data.corporateId = user.corporateId
+            data.personId = user.id
+            var deferred = $q.defer();
+            $http.post('http://api-development.synergysuite.net/rest/checklists/tasks/CHECK_LIST',data).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
             });
             return deferred.promise;
         }

@@ -29,3 +29,33 @@ md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
   padding-left: 22px;
 }
 
+//position add button
+.add-button{
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  background-color: #00b3ee !important;
+}
+
+//position icon inside button
+.add-button svg{
+  height: 100%;
+  width: 100%;
+  transform: scale(0.6);
+}
+
+//set icon color
+.add-button path{
+  fill: #ffffff;
+}
+
+//new checklist input style
+input {
+  border: none;
+  outline: none;
+  padding-right: 10px;
+  padding-left: 20px;
+  background-color: inherit;
+}
+
+

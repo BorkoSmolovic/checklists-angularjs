@@ -16,12 +16,20 @@
 }
 
 //title style
-.header-wrapper > md-toolbar > .md-toolbar-tools > h2 {
+.header-wrapper h2 {
   color: #ffffff;
   font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-//icon style
-.header-wrapper > md-toolbar > .md-toolbar-tools > .md-button > ng-md-icon > svg {
+//center div containing icon
+.header-wrapper div{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+//footer icon color
+.header-wrapper path {
   fill: #ffffff;
 }

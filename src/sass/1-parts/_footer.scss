@@ -17,15 +17,13 @@
   align-items: center;
 }
 
-//footer icon style
-.footer-wrapper > md-toolbar > ng-md-icon {
-  min-height: unset;
-  height: 24px;
+//center div containing icon
+.footer-wrapper div{
   margin-top: auto;
   margin-bottom: auto;
 }
 
 //footer icon color
-.footer-wrapper > md-toolbar > ng-md-icon > svg {
+.footer-wrapper path {
   fill: #ee6a20;
 }
