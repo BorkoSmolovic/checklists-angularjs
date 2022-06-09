@@ -16,7 +16,7 @@
         vm.outlets = outlets;
         vm.selectedOutlet = null;
         vm.checklists = [];
-        vm.showAddChecklistButton = true;
+        vm.showAddChecklistBtn = true;
         vm.newChecklist = ''
         vm.getOutlets = getOutlets;
         vm.onChecklistAdd = onChecklistAdd;
@@ -26,14 +26,13 @@
         function getOutlets() {
             ChecklistsService.loadChecklists(vm.selectedOutlet).then(function (data) {
                 vm.checklists = data;
-                vm.showAddChecklistButton = true;
+                vm.showAddChecklistBtn = true;
                 vm.newChecklist = '';
-
             })
         }
 
         function onAddBtnPress() {
-            vm.showAddChecklistButton = false;
+            vm.showAddChecklistBtn = false;
         }
 
         function onChecklistAdd() {

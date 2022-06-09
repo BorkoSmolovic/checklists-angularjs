@@ -49,13 +49,40 @@ md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
   fill: #ffffff;
 }
 
+//change add checklist row styles
+.addChecklistRow{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: inherit;
+  border-bottom: 1px solid #E9E9E9;
+}
+
 //new checklist input style
-input {
+.addChecklistRow input {
   border: none;
   outline: none;
-  padding-right: 10px;
-  padding-left: 20px;
   background-color: inherit;
+}
+
+//change button size and style
+.addChecklistRow button{
+  background-color: #ee6a20;
+  margin: 0;
+  padding: 0;
+  min-width: 1%;
+  border-radius: 5px;
+}
+
+.addChecklistRow button:disabled{
+  background-color: #ee6a20;
+  opacity: 40%;
+}
+
+//change button icon color
+.addChecklistRow path{
+  fill: #ffffff;
 }
 
 

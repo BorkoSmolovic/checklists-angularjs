@@ -19,21 +19,29 @@
 
     <checklists-row ng-repeat="checklist in vm.checklists" checklist='checklist'></checklists-row>
 
-    <div layout="row" ng-hide="vm.showAddChecklistButton">
+    <form name="addChecklistForm" ng-submit="addChecklistForm.$valid &&  vm.onChecklistAdd()" novalidate>
+    <div class="addChecklistRow" layout="row" ng-hide="vm.showAddChecklistBtn">
         <div layout="column" flex="grow" layout-align="center">
-                <input ng-model="vm.newChecklist" placeholder="Type a new checklist here...">
+                <input class="md-medium-tall" ng-model="vm.newChecklist" placeholder="Type a new checklist here..." required>
         </div>
-        <div layout="column" flex="auto" layout-align="center">
-            <md-button aria-label="Add" ng-click="vm.onChecklistAdd()">
-                <i class="fa-solid fa-check"></i>
+        <div
+                layout="column"
+                layout-align="center"
+                flex-xs="20"
+                flex-gt-xs="15"
+                flex-gt-md="10"
+                flex-gt-lg="5"
+        >
+            <md-button type="submit" aria-label="Add" ng-disabled="!vm.newChecklist">
+                <i class="fa-solid fa-check fa-xl"></i>
             </md-button>
         </div>
     </div>
+    </form>
 
-    <md-button class="md-fab add-button" aria-label="Add" ng-click="vm.onAddBtnPress()" ng-show="vm.showAddChecklistButton && vm.selectedOutlet">
+    <md-button class="md-fab add-button" aria-label="Add" ng-click="vm.onAddBtnPress()" ng-show="vm.showAddChecklistBtn && vm.selectedOutlet">
         <i class="fa-solid fa-plus"></i>
     </md-button>
-
 
 </div>
 
