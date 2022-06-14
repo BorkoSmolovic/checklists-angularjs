@@ -8,9 +8,9 @@
         .module('app.components.checklists')
         .factory('ChecklistsService', ChecklistsService);
 
-    ChecklistsService.$inject = ['$http', 'UserService', '$q', '$timeout'];
+    ChecklistsService.$inject = ['$http', 'UserService', '$q'];
 
-    function ChecklistsService($http, UserService, $q, $timeout) {
+    function ChecklistsService($http, UserService, $q) {
         var user = UserService.user;
         var factory = {
             getOutlets: getOutlets,
@@ -18,6 +18,9 @@
             getChecklists: getChecklists,
             loadChecklists: loadChecklists,
             addNewChecklist: addNewChecklist,
+            deleteChecklist: deleteChecklist,
+            updateChecklist: updateChecklist,
+            getChecklistDetails: getChecklistDetails,
         }
         return factory;
 
@@ -72,11 +75,11 @@
             return deferred.promise;
         }
 
-        function addNewChecklist(data){
-            data.corporateId = user.corporateId
-            data.personId = user.id
+        function addNewChecklist(checklist){
+            checklist.corporateId = user.corporateId
+            checklist.personId = user.id
             var deferred = $q.defer();
-            $http.post('http://api-development.synergysuite.net/rest/checklists/tasks/CHECK_LIST',data).then((response) => {
+            $http.post('http://api-development.synergysuite.net/rest/checklists/tasks/CHECK_LIST',checklist).then((response) => {
                 deferred.resolve(response.data);
             }).catch((error) => {
                 deferred.reject(error);
@@ -85,6 +88,43 @@
             });
             return deferred.promise;
         }
+
+        function deleteChecklist(checklistId){
+            var deferred = $q.defer();
+            $http.delete('http://api-development.synergysuite.net/rest/checklists/tasks/'+checklistId).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
+            });
+            return deferred.promise;
+        }
+
+        function updateChecklist(checklist){
+            var deferred = $q.defer();
+            $http.post('http://api-development.synergysuite.net/rest/checklists/tasks/CHECK_LIST', checklist).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
+            });
+            return deferred.promise;
+        }
+
+        function getChecklistDetails(checklistId){
+            var deferred = $q.defer();
+            $http.get('http://api-development.synergysuite.net/rest/checklists/tasks/'+checklistId).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
+            });
+            return deferred.promise;
+        }
+
     }
 
 })();

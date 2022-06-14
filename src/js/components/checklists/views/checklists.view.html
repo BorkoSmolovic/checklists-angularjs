@@ -1,9 +1,9 @@
-<div>
-
+<div ng-cloak>
+<!--    outlet select-->
     <div layout="row" layout-align="center">
         <md-select
                 ng-model="vm.selectedOutlet"
-                ng-change="vm.getOutlets()"
+                ng-change="vm.getChecklists(vm.selectedOutlet)"
                 placeholder="Outlets"
                 aria-label="Outlets"
                 flex-xs="55"
@@ -17,6 +17,7 @@
         </md-select>
     </div>
 
+<!--    animated swipe row outside wrapper-->
     <div
             class="outside"
             layout="row"
@@ -24,22 +25,27 @@
             md-swipe-right="vm.handleSwipe($event, $target)"
             ng-repeat="checklist in vm.checklists"
     >
+<!--        inside1 wrapper - elements that can be swiped-->
         <div
                 class="inside1"
                 layout="row"
                 id="inside1{{checklist.id}}"
         >
+<!--            checklist row directive-->
             <checklists-row checklist='checklist' style="width: 100%"></checklists-row>
         </div>
+
+<!--        inside2 wrapper - hidden elements shown after swipe-->
         <div class="inside2"
              id="inside2{{checklist.id}}"
         >
             <div layout="row">
-
+<!--                setup button-->
                     <md-button aria-label="Setup"
                                layout="column"
                                layout-align="center center"
                                class="setupChecklistBtn"
+                               ng-click="vm.onChecklistSetupOpen(checklist.id)"
                     >
                         <div layout="row" layout-align="center">
                             <i class="fa-solid fa-gear fa-xl"></i>
@@ -48,15 +54,12 @@
                             Setup
                         </div>
                     </md-button>
-
-
-
-
-
+<!--                delete button-->
                     <md-button aria-label="Delete"
                                layout="column"
                                layout-align="center center"
                                class="deleteChecklistBtn"
+                               ng-click="vm.onChecklistDelete(checklist.id)"
                     >
                         <div layout="row" layout-align="center">
                             <i class="fa-solid fa-trash-can fa-xl"></i>
@@ -70,6 +73,7 @@
         </div>
     </div>
 
+<!--    hidden input for new checklist-->
     <form name="addChecklistForm" ng-submit="addChecklistForm.$valid &&  vm.onChecklistAdd()" novalidate>
         <div class="addChecklistRow" layout="row" ng-hide="vm.showAddChecklistBtn">
             <div layout="column" flex="grow" layout-align="center">
@@ -79,7 +83,7 @@
             <div
                     layout="column"
                     layout-align="center"
-                    flex-xs="20"
+                    flex-xs="25"
                     flex-gt-xs="15"
                     flex-gt-md="10"
                     flex-gt-lg="5"
@@ -91,13 +95,11 @@
         </div>
     </form>
 
+<!--   show add checklist button-->
     <md-button class="md-fab add-button" aria-label="Add" ng-click="vm.onAddBtnPress()"
                ng-show="vm.showAddChecklistBtn && vm.selectedOutlet">
         <i class="fa-solid fa-plus"></i>
     </md-button>
-
-
-    <div id="RRR"></div>
 
 </div>
 

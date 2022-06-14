@@ -17,7 +17,7 @@
 
         return {
             link: link,
-            restrict: 'AE',
+            restrict: 'E',
             replace: true,
             scope: {
                 checklist: '<'

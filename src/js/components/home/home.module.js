@@ -19,6 +19,7 @@
             .state('home', {
                 url: '/home',
                 parent: 'app',
+                title: 'Home',
                 views: {
                     content: {
                         controller: 'HomeController',

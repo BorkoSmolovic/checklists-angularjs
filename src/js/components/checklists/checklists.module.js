@@ -15,6 +15,7 @@
             .state('checklists', {
                 url: '/checklists',
                 parent: 'app',
+                title: 'Checklists',
                 views: {
                     content: {
                         controller: 'ChecklistsController',
@@ -28,9 +29,7 @@
                     }]
                 },
                 bindToController: true,
-
             });
-
     }
 
 })();

@@ -1,0 +1,80 @@
+//spacing for buttons
+form{
+  margin-bottom: 50px;
+}
+
+//form style
+form div {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+//bottom btn group style
+.btnGroup {
+  z-index: 10;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+//save btn style
+.saveBtn {
+  border: 1px solid #B5B5B5;
+  border-radius: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  color: #B5B5B5;
+  font-weight: bolder;
+  background-color: #FFFFFF;
+}
+
+//cancel btn style
+.cancelBtn {
+  border: 1px solid #F23A30;
+  border-radius: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: #F23A30;
+  color: #FFFFFF;
+  font-weight: bolder;
+}
+
+//checkbox container style
+md-checkbox {
+margin: 0;
+}
+
+//checkbox label style
+md-checkbox .md-label {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+//checkbox round style
+md-checkbox .md-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  margin-top: 5px !important;
+}
+
+//change color when checked
+md-checkbox.md-checked .md-icon {
+  background-color: #38ADDC;
+}
+
+md-checkbox.md-checked .md-icon:after {
+  left: 6px;
+  top: 3px;
+}
+
+.md-resize-handle{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+
+
+

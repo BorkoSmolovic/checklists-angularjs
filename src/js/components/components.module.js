@@ -10,6 +10,7 @@
             'app.components.example',
             'app.components.sportsstore',
             'app.components.checklists',
+            'app.components.checklistsSetup',
         ]);
 
 })();

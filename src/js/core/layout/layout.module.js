@@ -20,7 +20,7 @@
                 abstract: true,
                 url: '/app',
                 controller: 'LayoutController',
-                controllerAs: 'layoutCtrl',
+                controllerAs: 'vm',
                 templateUrl: 'core/layout/views/layout.view.html'
             });
     }

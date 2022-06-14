@@ -36,7 +36,7 @@
         });
 
         $locationProvider.hashPrefix("!");
-        $urlRouterProvider.otherwise("/app/home");
+        // $urlRouterProvider.otherwise("/app/home");
 
         addCustomPalettes($mdThemingProvider)
     }
@@ -45,10 +45,10 @@
 
         // on state successfully changed
         $transitions.onSuccess({to: '**'}, function(trans){
-            $rootScope.title = "SynergySuite ";
+            $rootScope.title = "";
             var state = trans.router.stateService;
             if(angular.isDefined(state.current) && angular.isDefined(state.current.title)){
-                $rootScope.title += state.current.title;
+                $rootScope.title = state.current.title;
             }
         });
 
@@ -306,7 +306,7 @@
         });
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('synorange')
+            .primaryPalette('syngray')
     }
 
 })();

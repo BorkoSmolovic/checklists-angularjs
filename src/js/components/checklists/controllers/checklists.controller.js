@@ -8,9 +8,9 @@
         .module('app.components.checklists')
         .controller('ChecklistsController', ChecklistsController);
 
-    ChecklistsController.$inject = ['outlets', 'ChecklistsService', '$scope'];
+    ChecklistsController.$inject = ['outlets', 'ChecklistsService','$state','$rootScope'];
 
-    function ChecklistsController(outlets, ChecklistsService, $scope) {
+    function ChecklistsController(outlets, ChecklistsService, $state, $rootScope) {
 
         var vm = this;
         vm.outlets = outlets;
@@ -19,14 +19,26 @@
         vm.showAddChecklistBtn = true;
         vm.newChecklist = '';
         vm.prevId = -1;
-        vm.getOutlets = getOutlets;
+        vm.showChecklistSetupDialog = false;
+        vm.setupChecklist = null;
+        vm.$onInit = onInit;
+        vm.getChecklists = getChecklists;
         vm.onChecklistAdd = onChecklistAdd;
         vm.onAddBtnPress = onAddBtnPress;
         vm.handleSwipe = handleSwipe;
-        vm.test = test;
+        vm.onChecklistDelete = onChecklistDelete;
+        vm.onChecklistSetupOpen = onChecklistSetupOpen;
 
-        function getOutlets() {
-            ChecklistsService.loadChecklists(vm.selectedOutlet).then(function (data) {
+        function onInit(){
+            if($state.outlet){
+                vm.selectedOutlet = $state.outlet
+                getChecklists($state.outlet)
+            }
+        }
+
+        function getChecklists(outlet) {
+            ChecklistsService.loadChecklists(outlet).then(function (data) {
+                $state.outlet = outlet;
                 vm.checklists = data;
                 vm.showAddChecklistBtn = true;
                 vm.newChecklist = '';
@@ -44,7 +56,7 @@
                 companyId: vm.selectedOutlet.id,
             }
             ChecklistsService.addNewChecklist(data).then(function () {
-                getOutlets();
+                getChecklists(vm.selectedOutlet);
             })
         }
 
@@ -89,8 +101,15 @@
             }
         }
 
-        function test() {
-            console.log('test', vm.checklists)
+        function onChecklistDelete(checklistId){
+            ChecklistsService.deleteChecklist(checklistId).then(function (){
+                vm.getChecklists(vm.selectedOutlet)
+            })
+        }
+
+        function onChecklistSetupOpen(checklistId){
+            $rootScope.$broadcast("openSetup",checklistId);
+            $state.go('checklistsSetup',{checklistId:checklistId});
         }
     }
 })();

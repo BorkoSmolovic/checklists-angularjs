@@ -96,7 +96,6 @@ md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
   min-height: 100%;
   background-color: #F23A30;
   color: white;
-  pointer-events: none;
 }
 
 //change button icon color
@@ -114,15 +113,6 @@ md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
   min-height: 100%;
   background-color: #DADADA;
   color: white;
-  pointer-events: none;
-}
-
-//change button size and style
-.setupChecklistBtn button{
-  background-color: inherit;
-  height: inherit;
-  margin: 0;
-  padding: 0;
 }
 
 //change button icon color

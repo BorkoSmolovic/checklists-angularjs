@@ -1,12 +1,23 @@
 <div layout="column">
-
+    <!--    header-->
+    <!--    header-->
     <header class="header-wrapper" flex>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <div>
+                <div ng-show="vm.showBackBtn"
+                     ng-click="vm.onBackBtn()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <div ng-hide="vm.showBackBtn">
                     <i class="fa-solid fa-bars"></i>
                 </div>
-                <h2 flex md-truncate>Checklists</h2>
+
+                <h2 flex md-truncate>{{title}}</h2>
+                <div class="layout-padding-md"
+                     ng-show="vm.showDelBtn"
+                     ng-click="vm.onDelBtn()">
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
                 <div>
                     <i class="fa-solid fa-filter"></i>
                 </div>
@@ -14,9 +25,14 @@
         </md-toolbar>
     </header>
 
-<!--    <div class="spinner" ng-show="loading"></div>-->
+    <!--    main view-->
     <ui-view class="content-wrapper" name="content"></ui-view>
 
+    <confirm-prompt showConfirmPrompt="vm.showConfirmPrompt"
+                    title="vm.confirmPromptTitle"
+                    text="vm.confirmPromptText"
+                    result="vm.onConfirmPromptResult()"/>
+    <!--    footer-->
     <footer class="footer-wrapper" flex>
         <md-toolbar>
             <div>
@@ -24,5 +40,4 @@
             </div>
         </md-toolbar>
     </footer>
-
 </div>

@@ -1,0 +1,51 @@
+<div ng-cloak>
+
+    <div layout="row" layout-align="center">
+        <form name="setupChecklistForm"
+              novalidate
+              flex="grow">
+            <div layout="row">
+                <md-input-container class="md-block" flex="grow">
+                    <label>Checklist Name</label>
+                    <input ng-model="vm.checklistDetails.name" required>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block" flex="grow">
+                    <label>Checklist Description</label>
+                    <textarea ng-model="vm.checklistDetails.description"
+                              md-maxlength="250" rows="4"
+                              md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block" flex="grow">
+                    <label>Alert list</label>
+                    <input ng-model="vm.checklistDetails.alertRecipients">
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-checkbox ng-model="vm.checklistDetails.lastDayOfMonth">
+                    Checklist to be completed at the last day of the month
+                </md-checkbox>
+            </div>
+        </form>
+    </div>
+    <div class="btnGroup" layout="row" layout-align="center">
+        <div layout="column" flex="50">
+            <md-button class="cancelBtn" ng-click="vm.onCancel()">
+                Cancel
+            </md-button>
+        </div>
+        <div layout="column" flex="50">
+            <md-button class="saveBtn"
+                       ng-click="setupChecklistForm.$valid && vm.updateChecklist()"
+                       ng-disabled="!setupChecklistForm.$valid">
+                Save
+            </md-button>
+        </div>
+    </div>
+
+</div>
+
+
