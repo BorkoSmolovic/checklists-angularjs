@@ -1,0 +1,24 @@
+<div class="subtaskRow" layout="row" layout-align="center">
+    <div  layout="column" layout-align="center center" flex="auto">
+        <div class="subtaskCheck">
+            <md-checkbox ng-model="!!subtask.result && subtask.result.completed" md-indeterminate="!!subtask.result && subtask.result.na">
+            </md-checkbox>
+        </div>
+    </div>
+    <!--    display task details-->
+    <div layout="column" layout-align="center" flex="grow">
+        <div class="subtaskName">
+            {{subtask.name}}
+        </div>
+        <div class="subtaskChip" layout="row" ng-show="!!subtask.result">
+            <md-chip ng-show="subtask.result.completed">Completed by: {{subtask.result.person.knownAs}} at {{subtask.result.completedTime}}</md-chip>
+            <md-chip ng-show="subtask.result.na">Marked as N/A by: {{subtask.result.person.knownAs}} at {{subtask.result.completedTime}}</md-chip>
+        </div>
+
+    </div>
+    <div class="subtaskFlags" layout="column" layout-align="center" flex="auto">
+        <div>
+
+        </div>
+    </div>
+</div>

@@ -75,6 +75,14 @@ md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
   border-radius: 5px;
 }
 
+.nameCol{
+  padding: 0;
+}
+
+.btnCol{
+  padding: 0;
+}
+
 //change disabled style
 .addChecklistRow button:disabled{
   background-color: #ee6a20;

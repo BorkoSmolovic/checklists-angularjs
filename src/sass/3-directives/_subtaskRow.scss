@@ -1,0 +1,46 @@
+.subtaskRow{
+  border-bottom: 1px solid #E9E9E9;
+  height: 65px;
+}
+
+.subtaskName{
+  padding-left: 5px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-weight: bold;
+}
+
+.subtaskChip{
+  padding-left: 5px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-weight: bold;
+  font-size: smaller;
+}
+
+.subtaskChip md-chip{
+  padding: 2px 5px;
+  border-radius: 10px;
+  background-color: #EE6A20;
+  color: #FFFFFF;
+}
+
+.subtaskCheck{
+  min-height: 0;
+  height: auto;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+md-checkbox.md-indeterminate .md-icon {
+  background-color: #F23A30;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+md-checkbox.md-checked .md-icon {
+  background-color: #EE6A20;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}

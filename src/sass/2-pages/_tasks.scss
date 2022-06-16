@@ -1,0 +1,48 @@
+.taskTitle{
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.taskDesc{
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: lighter;
+  font-size: smaller;
+}
+
+.subtaskNoteBtn{
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  min-width: 1%;
+  width: 60px;
+  min-height: 100%;
+  background-color: #FBCF41;
+  color: white;
+}
+
+.subtaskNABtn{
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  min-width: 1%;
+  width: 60px;
+  min-height: 100%;
+  background-color: #F23A30;
+  color: white;
+}
+
+.subtaskSetupBtn{
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  min-width: 1%;
+  width: 60px;
+  min-height: 100%;
+  background-color: #DADADA;
+  color: white;
+}

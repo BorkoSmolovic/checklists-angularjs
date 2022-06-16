@@ -1,0 +1,104 @@
+<div>
+    <div class="taskTitle" layout="row">{{vm.task.name}}</div>
+    <div class="taskDesc" layout="row">{{vm.task.description}}</div>
+</div>
+
+
+<!--    animated swipe row outside wrapper-->
+<div
+        class="outside"
+        layout="row"
+        md-swipe-left="vm.handleSwipe($event, $target)"
+        md-swipe-right="vm.handleSwipe($event, $target)"
+        ng-repeat="subtask in vm.subTasks"
+>
+    <!--        inside1 wrapper - elements that can be swiped-->
+    <div
+            ng-click="vm.openChecklistsTasks(subtask.id)"
+            class="inside1"
+            layout="row"
+            id="inside1{{subtask.id}}"
+    >
+        <!--            checklist row directive-->
+        <subtask-row subtask='subtask' style="width: 100%"></subtask-row>
+    </div>
+
+    <!--        inside2 wrapper - hidden elements shown after swipe-->
+    <div class="inside2"
+         id="inside2{{subtask.id}}"
+    >
+        <div layout="row">
+            <!--            note button -->
+            <md-button aria-label="Note"
+                       layout="column"
+                       layout-align="center center"
+                       class="subtaskNoteBtn"
+                       ng-click="vm.onSubtaskNote(subtask)"
+            >
+                <div layout="row" layout-align="center">
+                    <i class="fa-solid fa-comment fa-xl"></i>
+                </div>
+                <div layout="row" layout-align="center">
+                    Note
+                </div>
+            </md-button>
+            <!--                n/a button-->
+            <md-button aria-label="NA"
+                       layout="column"
+                       layout-align="center center"
+                       class="subtaskNABtn"
+                       ng-click="vm.onSubtaskNA(subtask)"
+            >
+                <div layout="row" layout-align="center">
+                    <i class="fa-solid fa-circle-minus fa-xl"></i>
+                </div>
+                <div layout="row" layout-align="center">
+                    N/A
+                </div>
+            </md-button>
+            <!--                setup button-->
+            <md-button aria-label="Setup"
+                       layout="column"
+                       layout-align="center center"
+                       class="subtaskSetupBtn"
+                       ng-click="vm.onSubtaskSetup(subtask.id)"
+            >
+                <div layout="row" layout-align="center">
+                    <i class="fa-solid fa-gear fa-xl"></i>
+                </div>
+                <div layout="row" layout-align="center">
+                    Setup
+                </div>
+            </md-button>
+        </div>
+    </div>
+</div>
+
+<!--    hidden input for new checklist-->
+<form name="addTaskForm" ng-submit="addTaskForm.$valid &&  vm.onTaskAdd()" novalidate>
+    <div class="addChecklistRow" layout="row" ng-hide="vm.showAddTaskBtn">
+        <div class="nameCol" layout="column" flex="grow" layout-align="center">
+            <input class="md-medium-tall" ng-model="vm.newTask" placeholder="Type a new task here..."
+                   required>
+        </div>
+        <div
+                class="btnCol"
+                layout="column"
+                layout-align="center"
+                flex-xs="25"
+                flex-gt-xs="15"
+                flex-gt-md="10"
+                flex-gt-lg="5"
+        >
+            <md-button type="submit" aria-label="Add" ng-disabled="!vm.newTask">
+                <i class="fa-solid fa-check fa-xl"></i>
+            </md-button>
+        </div>
+    </div>
+</form>
+
+<!--   show add checklist button-->
+<md-button class="md-fab add-button" aria-label="Add" ng-click="vm.onAddBtnPress()"
+           ng-show="vm.showAddTaskBtn">
+    <i class="fa-solid fa-plus"></i>
+</md-button>

@@ -1,0 +1,36 @@
+md-dialog {
+  border-radius: 15px;
+}
+
+.title {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  text-align: justify;
+  font-weight: bold;
+  font-size: large;
+}
+
+.text {
+  margin: 10px 20px;
+  text-align: justify;
+  text-align-last: center;
+  color: #8D8D8D;
+}
+
+.orange-text{
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border-top: 1px solid #E9E9E9;
+  border-left: 1px solid #E9E9E9;
+  font-weight: bolder;
+  color: #EE6A20;
+}
+
+.grey-text{
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border-top: 1px solid #E9E9E9;
+  color: #B5B5B5;
+}

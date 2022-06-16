@@ -8,9 +8,9 @@
         .module('app.components.checklists')
         .controller('ChecklistsController', ChecklistsController);
 
-    ChecklistsController.$inject = ['outlets', 'ChecklistsService','$state','$rootScope'];
+    ChecklistsController.$inject = ['outlets', 'ChecklistsService', '$state', '$rootScope', '$mdDialog'];
 
-    function ChecklistsController(outlets, ChecklistsService, $state, $rootScope) {
+    function ChecklistsController(outlets, ChecklistsService, $state, $rootScope, $mdDialog) {
 
         var vm = this;
         vm.outlets = outlets;
@@ -27,10 +27,12 @@
         vm.onAddBtnPress = onAddBtnPress;
         vm.handleSwipe = handleSwipe;
         vm.onChecklistDelete = onChecklistDelete;
-        vm.onChecklistSetupOpen = onChecklistSetupOpen;
+        vm.openChecklistsSetup = openChecklistsSetup;
+        vm.showDialog = showDialog;
+        vm.openChecklistsTasks = openChecklistsTasks;
 
-        function onInit(){
-            if($state.outlet){
+        function onInit() {
+            if ($state.outlet) {
                 vm.selectedOutlet = $state.outlet
                 getChecklists($state.outlet)
             }
@@ -101,15 +103,40 @@
             }
         }
 
-        function onChecklistDelete(checklistId){
-            ChecklistsService.deleteChecklist(checklistId).then(function (){
-                vm.getChecklists(vm.selectedOutlet)
+        function onChecklistDelete(checklistId) {
+            let data = {
+                title : 'Delete Checklist',
+                text: 'Are you sure that you want to delete the checklist?',
+            }
+            vm.showDialog(data).then(function (data){
+                if(data){
+                    ChecklistsService.deleteChecklist(checklistId).then(function (){
+                        vm.getChecklists(vm.selectedOutlet)
+                    })
+                }
+            }).catch(function (data){
+                console.log('catch',data)
+            }).finally(function (){
+
+            });
+        }
+
+        function openChecklistsSetup(checklistId) {
+            ChecklistsService.openChecklistsSetup(checklistId)
+        }
+
+        function showDialog(data) {
+            return $mdDialog.show({
+                controller: 'ConfirmPromptController',
+                controllerAs: 'vm',
+                locals: {data: data},
+                templateUrl: 'src/js/components/directives/confirmPrompt/views/confirmPrompt.view.html',
+                targetEvent: event,
             })
         }
 
-        function onChecklistSetupOpen(checklistId){
-            $rootScope.$broadcast("openSetup",checklistId);
-            $state.go('checklistsSetup',{checklistId:checklistId});
+        function openChecklistsTasks(checklistId){
+            ChecklistsService.openChecklistsTasks(checklistId)
         }
     }
 })();

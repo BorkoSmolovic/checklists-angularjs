@@ -25,7 +25,7 @@
                     }
                 },
                 resolve: {
-                    checklistDetails: ['ChecklistsService','$stateParams',  function (ChecklistsService,$stateParams){
+                    checklistDetails: ['ChecklistsService', '$stateParams', function (ChecklistsService, $stateParams) {
                         return ChecklistsService.getChecklistDetails($stateParams.checklistId);
                     }]
                 },

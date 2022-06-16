@@ -21,6 +21,11 @@
                 <div>
                     <i class="fa-solid fa-filter"></i>
                 </div>
+                <div class="padding-x"
+                     ng-show="vm.showChecklistSetupBtn"
+                     ng-click="vm.onChecklistSetup()">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
             </div>
         </md-toolbar>
     </header>
@@ -28,10 +33,6 @@
     <!--    main view-->
     <ui-view class="content-wrapper" name="content"></ui-view>
 
-    <confirm-prompt showConfirmPrompt="vm.showConfirmPrompt"
-                    title="vm.confirmPromptTitle"
-                    text="vm.confirmPromptText"
-                    result="vm.onConfirmPromptResult()"/>
     <!--    footer-->
     <footer class="footer-wrapper" flex>
         <md-toolbar>

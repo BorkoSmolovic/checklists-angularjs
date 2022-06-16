@@ -8,10 +8,11 @@
         .module('app.components.checklists')
         .factory('ChecklistsService', ChecklistsService);
 
-    ChecklistsService.$inject = ['$http', 'UserService', '$q'];
+    ChecklistsService.$inject = ['$http', 'UserService', '$q', '$state', '$rootScope'];
 
-    function ChecklistsService($http, UserService, $q) {
+    function ChecklistsService($http, UserService, $q, $state, $rootScope) {
         var user = UserService.user;
+        var currentBusinessDate = '';
         var factory = {
             getOutlets: getOutlets,
             getCurrentBusinessDate: getCurrentBusinessDate,
@@ -21,6 +22,8 @@
             deleteChecklist: deleteChecklist,
             updateChecklist: updateChecklist,
             getChecklistDetails: getChecklistDetails,
+            openChecklistsSetup: openChecklistsSetup,
+            openChecklistsTasks: openChecklistsTasks,
         }
         return factory;
 
@@ -36,9 +39,10 @@
             return deferred.promise;
         }
 
-        function getCurrentBusinessDate(outlet) {
+        function getCurrentBusinessDate(outletId) {
             var deferred = $q.defer();
-            $http.get('http://api-development.synergysuite.net/rest/companyDates/currentBusinessDate/' + outlet.id).then((response) => {
+            $http.get('http://api-development.synergysuite.net/rest/companyDates/currentBusinessDate/' + outletId).then((response) => {
+                currentBusinessDate = response.data;
                 deferred.resolve(response.data);
             }).catch((error) => {
                 deferred.reject(error);
@@ -48,11 +52,11 @@
             return deferred.promise;
         }
 
-        function getChecklists(outlet, currentBusinessDate) {
+        function getChecklists(outletId, currentBusinessDate) {
             var deferred = $q.defer();
             $http.get('http://api-development.synergysuite.net/rest/checklists/tasks?' +
                 'date=' + currentBusinessDate +
-                '&companyId=' + outlet.id +
+                '&companyId=' + outletId +
                 '&corporateId=' + user.corporateId +
                 '&personId=' + user.id +
                 '&type=CHECK_LIST').then((response) => {
@@ -67,8 +71,8 @@
 
         function loadChecklists(outlet) {
             var deferred = $q.defer();
-            getCurrentBusinessDate(outlet).then(function(response){
-                getChecklists(outlet, response).then(function(data){
+            getCurrentBusinessDate(outlet.id).then(function(response){
+                getChecklists(outlet.id, response).then(function(data){
                     deferred.resolve(data)
                 });
             });
@@ -123,6 +127,22 @@
 
             });
             return deferred.promise;
+        }
+
+        function openChecklistsSetup(checklistId){
+            $rootScope.$broadcast("openSetup", checklistId);
+            $state.go('checklistsSetup', {checklistId: checklistId});
+        }
+
+        function openChecklistsTasks(checklistId){
+            let data = {
+                'checklistId': checklistId,
+                'companyId': user.corporateId,
+                'personId': user.id,
+                'date': currentBusinessDate
+            }
+            $rootScope.$broadcast("openTasks", checklistId);
+            $state.go('tasks', data);
         }
 
     }

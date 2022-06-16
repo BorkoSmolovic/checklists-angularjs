@@ -11,6 +11,10 @@
 @import "2-pages/home";
 @import "2-pages/checklists";
 @import "2-pages/checklistsSetup";
+@import "2-pages/tasks";
 
 // import directives
 @import "3-directives/checklistsRow";
+@import "3-directives/confirmPrompt";
+@import "3-directives/subtaskRow";
+
