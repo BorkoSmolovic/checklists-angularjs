@@ -15,13 +15,11 @@
             'request': function (config) {
                 $rootScope.loading = true;
                 // Successful request method
-                console.log('mijenja',$rootScope.loading)
                 return config; // or $q.when(config);
             },
             'response': function (response) {
                 $rootScope.loading = false;
                 // successful response
-                console.log('mijenja',$rootScope.loading)
                 return response; // or $q.when(config);
             },
             'requestError': function (rejection) {

@@ -30,7 +30,6 @@
         }
 
         function clearCompleteByTime(){
-            console.log('wtf')
             vm.subtaskDetails.completeByTime = '';
         }
 
