@@ -4,6 +4,7 @@
         <md-select
                 ng-model="vm.selectedOutlet"
                 ng-change="vm.getChecklists(vm.selectedOutlet)"
+                ng-model-options="{ trackBy: '$value.id' }"
                 placeholder="Outlets"
                 aria-label="Outlets"
                 flex-xs="55"
@@ -16,7 +17,6 @@
             </md-option>
         </md-select>
     </div>
-
 <!--    animated swipe row outside wrapper-->
     <div
             class="outside"

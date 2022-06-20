@@ -87,6 +87,10 @@
             }
         });
 
+        $transitions.onError({to: '**'}, function (trans){
+            $state.go('checklists');
+        })
+
         $http.defaults.headers.common['synergy-login-token'] = 'e0990471-9ff7-49e0-b533-f8fba0656c70';
     }
 
