@@ -1,24 +1,34 @@
-<div class="subtaskRow" layout="row" layout-align="center">
-    <div  layout="column" layout-align="center center" flex="auto">
-        <div class="subtaskCheck">
-            <md-checkbox ng-model="!!subtask.result && subtask.result.completed" md-indeterminate="!!subtask.result && subtask.result.na">
-            </md-checkbox>
+<div class="subtaskRow" layout="column" layout-align="center" ng-cloak>
+    <div layout="row">
+        <div layout="column" layout-align="center center" flex="auto">
+            <div class="subtaskCheck">
+                <md-checkbox ng-click="onCheckboxClick()" ng-model="subtask.checkbox" md-indeterminate="subtask.checkbox === false" aria-label="done">
+                </md-checkbox>
+            </div>
+        </div>
+        <!--    display task details-->
+        <div layout="column" layout-align="center" flex="grow">
+            <div class="subtaskName">
+                {{subtask.name}}
+            </div>
+            <div class="subtaskComment" ng-show="subtask.result.note">
+                <i class="fa-solid fa-comment"></i>
+            </div>
+        </div>
+        <div class="subtaskFlags" layout="column" layout-align="center" flex="noshrink">
+            <div>
+                <i ng-if="subtask.important" class="fa-solid fa-star important"></i>
+                <i ng-if="subtask.urgent" class="fa-solid fa-circle-exclamation urgent"></i>
+                <md-chip ng-if="subtask.completeByTime != null" class="timebadge">{{subtask.completeByTime}}</md-chip>
+            </div>
         </div>
     </div>
-    <!--    display task details-->
-    <div layout="column" layout-align="center" flex="grow">
-        <div class="subtaskName">
-            {{subtask.name}}
-        </div>
+    <div layout="row">
         <div class="subtaskChip" layout="row" ng-show="!!subtask.result">
-            <md-chip ng-show="subtask.result.completed">Completed by: {{subtask.result.person.knownAs}} at {{subtask.result.completedTime}}</md-chip>
-            <md-chip ng-show="subtask.result.na">Marked as N/A by: {{subtask.result.person.knownAs}} at {{subtask.result.completedTime}}</md-chip>
-        </div>
-
-    </div>
-    <div class="subtaskFlags" layout="column" layout-align="center" flex="auto">
-        <div>
-
+            <md-chip ng-show="subtask.result.completed">Completed by: {{subtask.result.person.knownAs}}
+                at {{subtask.result.completedTime}}</md-chip>
+            <md-chip ng-show="subtask.result.na">Marked as N/A by: {{subtask.result.person.knownAs}}
+                at {{subtask.result.completedTime}}</md-chip>
         </div>
     </div>
 </div>

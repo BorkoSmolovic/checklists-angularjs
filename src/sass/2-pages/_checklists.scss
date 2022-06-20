@@ -139,7 +139,7 @@ md-select > md-select-value > span:not(.md-select-icon):not(.md-text)  {
 }
 .inside1 {
   min-width: 100%;
-  min-height: fit-content;
+  height: fit-content;
   position: absolute;
   left: 0%;
   transition: transform 0.6s !important;

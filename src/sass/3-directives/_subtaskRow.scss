@@ -5,7 +5,6 @@
 
 .subtaskName{
   padding-left: 5px;
-  padding-top: 0;
   padding-bottom: 0;
   font-weight: bold;
 }
@@ -15,7 +14,7 @@
   padding-top: 0;
   padding-bottom: 0;
   font-weight: bold;
-  font-size: smaller;
+  font-size: x-small;
 }
 
 .subtaskChip md-chip{
@@ -25,10 +24,19 @@
   color: #FFFFFF;
 }
 
+.subtaskComment{
+  padding-left: 5px;
+  margin-top: -3px;
+}
+
+.subtaskComment path{
+  fill: #B5B5B5;
+}
+
 .subtaskCheck{
   min-height: 0;
-  height: auto;
-  margin-bottom: 10px;
+  height: min-content;
+  margin-top: -10px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -43,4 +51,25 @@ md-checkbox.md-checked .md-icon {
   background-color: #EE6A20;
   color: #FFFFFF;
   border-color: #FFFFFF;
+}
+
+.subtaskFlags{
+  margin-right: 15px;
+}
+
+.subtaskFlags .important path{
+  fill: #FBCF41;
+}
+
+.subtaskFlags .urgent path{
+  fill: #F23A30;
+}
+
+.subtaskFlags .timebadge{
+  padding: 2px 5px;
+  border-radius: 10px;
+  background-color: #FBC4C1;
+  color: #F23A30;
+  font-weight: bold;
+  font-size: smaller;
 }

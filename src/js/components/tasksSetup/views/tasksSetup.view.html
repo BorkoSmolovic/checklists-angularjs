@@ -1,0 +1,64 @@
+<div ng-cloak>
+    <div layout="row" layout-align="center">
+        <form name="setupTaskForm"
+              novalidate
+              flex="grow">
+            <div layout="row">
+                <md-input-container class="md-block" flex="grow" style="margin-bottom: 0">
+                    <label>Task Name</label>
+                    <input ng-model="vm.subtaskDetails.name" required>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block" flex="grow" style="margin: 0">
+                    <label>Task Description</label>
+                    <textarea ng-model="vm.subtaskDetails.description"
+                              md-maxlength="250" rows="3"
+                              md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <i class="fa-regular fa-clock fa-2x"></i>
+                <md-input-container class="md-block" flex="grow" style="margin: 0; margin-left: 10px">
+                    <input ng-model="vm.subtaskDetails.completeByTime"
+                           ng-pattern="/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/"
+                    />
+                </md-input-container>
+                <div ng-click="vm.clearCompleteByTime()">
+                    <i class="fa-solid fa-circle-xmark fa-1x"></i>
+                </div>
+            </div>
+            <div layout="row" style="padding-top: 0">
+                <md-checkbox class="checkboxTitle synblue" ng-model="vm.subtaskDetails.lastDayOfMonth">
+                    Task to be completed at the last day of the month
+                </md-checkbox>
+            </div>
+            <div layout="row" style="padding-top: 0">
+                <md-checkbox class="checkboxTitle synblue" ng-model="vm.subtaskDetails.important">
+                    Important task
+                </md-checkbox>
+            </div>
+            <div layout="row" style="padding-top: 0">
+                <md-checkbox class="checkboxTitle synblue" ng-model="vm.subtaskDetails.urgent">
+                    Urgent task
+                </md-checkbox>
+            </div>
+        </form>
+    </div>
+    <div class="btnGroup" layout="row" layout-align="center">
+        <div layout="column" flex="50">
+            <md-button class="cancelBtn" ng-click="vm.onCancel()">
+                Cancel
+            </md-button>
+        </div>
+        <div layout="column" flex="50">
+            <md-button class="saveBtn"
+                       ng-click="setupTaskForm.$valid && vm.updateTask()"
+                       ng-disabled="!setupTaskForm.$valid">
+                Save
+            </md-button>
+        </div>
+    </div>
+</div>
+
+

@@ -25,7 +25,11 @@
             }
             let completed = 0;
             vm.checklist.subTasks.forEach(subtask => {
-                subtask.result ? completed++ : '';
+                if(subtask.result){
+                    subtask.result.completed ? completed++ : '';
+                    subtask.result.na ? completed++ : '';
+                }
+
             })
             return completed;
         }

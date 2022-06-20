@@ -3,12 +3,13 @@
            flex-md="30"
            flex-lg="20"
            flex-xl="12"
+           ng-cloak
 >
     <div class="title" layout="row" layout-align="center">
-        {{vm.data}} - Note
+        {{vm.data.name}} - Note
     </div>
     <div class="text" layout="row">
-        <textarea ng-model="vm.comment"rows="2" md-select-on-focus></textarea>
+        <textarea ng-model="vm.comment"rows="2" style="width: 100%"></textarea>
     </div>
     <div class="actions" layout="row">
         <md-button class="grey-text" flex="50" ng-click=vm.onClose() aria-label="Cancel">Cancel</md-button>

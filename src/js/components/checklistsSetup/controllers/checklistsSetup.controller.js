@@ -23,8 +23,8 @@
         }
 
         function onCancel(){
-            $rootScope.$broadcast("closeSetup");
-            $state.go($state.current.previousState.name);
+            $rootScope.$broadcast("openTasks");
+            $state.go($rootScope.previousState.name,$rootScope.previousState.params);
         }
     }
 })();

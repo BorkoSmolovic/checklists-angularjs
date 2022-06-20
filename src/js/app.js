@@ -16,13 +16,12 @@
         .run(run);
 
     config.$inject = ['$urlRouterProvider', '$locationProvider', '$urlMatcherFactoryProvider', '$httpProvider', '$mdThemingProvider'];
-    run.$inject = ['$rootScope', '$http', '$state', '$transitions'];
+    run.$inject = ['$rootScope', '$http', '$state', '$transitions', 'HttpInterceptorService'];
 
-    function config($urlRouterProvider, $locationProvider, $urlMatcherFactoryProvider, $httpProvider, $mdThemingProvider) {
+    function config($urlRouterProvider, $locationProvider, $urlMatcherFactoryProvider, $httpProvider, $mdThemingProvider, HttpInterceptorService) {
         $urlMatcherFactoryProvider.strictMode(false);
         // $httpProvider.defaults.withCredentials = true;
-
-        // $httpProvider.interceptors.push('APIInterceptor');
+        $httpProvider.interceptors.push('HttpInterceptorService');
 
         // Rule that converts url to lower case
         $urlRouterProvider.rule(function ($injector, $location) {
@@ -42,17 +41,53 @@
     }
 
     function run($rootScope, $http, $state, $transitions) {
-
         // on state successfully changed
         $transitions.onSuccess({to: '**'}, function(trans){
+
             $rootScope.title = "";
             var state = trans.router.stateService;
             if(angular.isDefined(state.current) && angular.isDefined(state.current.title)){
                 $rootScope.title = state.current.title;
             }
+
+            // router history
+            //define variable for previous state
+            var prev = {
+                name: '',
+                params: {},
+                prev: {},
+            }
+
+            if($rootScope.previousState){
+                //save previous state if exists
+                prev = {
+                    name: $rootScope.previousState.name,
+                    params: $rootScope.previousState.params,
+                    prev: $rootScope.previousState.prev,
+                }
+            }else{
+                //define empty prev state if it doesnt exist
+                $rootScope.previousState = {
+                    name: '',
+                    params: {},
+                    prev: {},
+                }
+            }
+
+            //if user is going forward set new previous state
+            //else if user is going back and take previous state from its previous state to avoid infinite loop
+            if($rootScope.previousState && prev.name != trans.router.globals.current.name) {
+                $rootScope.previousState = {
+                    name: trans.from().name,
+                    params: trans.params('from'),
+                    prev: prev,
+                }
+            }else{
+                $rootScope.previousState = prev.prev
+            }
         });
 
-        $http.defaults.headers.common['synergy-login-token'] = '908c7162-8c74-4691-b775-be31e4f94ec5';
+        $http.defaults.headers.common['synergy-login-token'] = 'e0990471-9ff7-49e0-b533-f8fba0656c70';
     }
 
     function addCustomPalettes($mdThemingProvider){

@@ -13,6 +13,7 @@
     function subtaskRow() {
 
         function link($scope, element, attr) {
+
         }
 
         return {
@@ -20,7 +21,8 @@
             restrict: 'E',
             replace: true,
             scope: {
-                subtask: '<'
+                subtask: '<',
+                onCheckboxClick: '&'
             },
             templateUrl: 'src/js/components/directives/subtaskRow/views/subtaskRow.view.html',
         };

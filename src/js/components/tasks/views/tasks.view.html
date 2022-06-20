@@ -1,4 +1,4 @@
-<div>
+<div ng-cloak>
     <div class="taskTitle" layout="row">{{vm.task.name}}</div>
     <div class="taskDesc" layout="row">{{vm.task.description}}</div>
 </div>
@@ -7,6 +7,7 @@
 <!--    animated swipe row outside wrapper-->
 <div
         class="outside"
+        ng-cloak
         layout="row"
         md-swipe-left="vm.handleSwipe($event, $target)"
         md-swipe-right="vm.handleSwipe($event, $target)"
@@ -20,7 +21,7 @@
             id="inside1{{subtask.id}}"
     >
         <!--            checklist row directive-->
-        <subtask-row subtask='subtask' style="width: 100%"></subtask-row>
+        <subtask-row subtask='subtask' on-checkbox-click="vm.onCheckboxClick(subtask)" style="width: 100%"></subtask-row>
     </div>
 
     <!--        inside2 wrapper - hidden elements shown after swipe-->

@@ -15,8 +15,14 @@
         var factory = {
             getTasks: getTasks,
             addNewTask: addNewTask,
+            onSubtaskComplete: onSubtaskComplete,
             onSubtaskNA: onSubtaskNA,
+            onSubtaskClear: onSubtaskClear,
             onSubtaskNote: onSubtaskNote,
+            onCheckboxClick: onCheckboxClick,
+            getSubtaskDetails: getSubtaskDetails,
+            onSubtaskUpdate: onSubtaskUpdate,
+            deleteTask: deleteTask,
         }
         return factory;
 
@@ -29,6 +35,7 @@
                     '&companyId=' + data.companyId + '' +
                     '&personId=' + data.personId + '' +
                     '&date=' + data.date).then((response) => {
+                    response.data.subTasks = determineStatus(response.data.subTasks)
                     deferred.resolve(response.data);
                 }).catch((error) => {
                     deferred.reject(error);
@@ -37,6 +44,21 @@
                 });
             }, 0)
             return deferred.promise;
+        }
+
+        function determineStatus(subtasks) {
+            subtasks.forEach(subtask => {
+                if (!subtask.result) {
+                    subtask.checkbox = null;
+                } else if (subtask.result.completed) {
+                    subtask.checkbox = true;
+                } else if (subtask.result.na) {
+                    subtask.checkbox = false;
+                } else {
+                    subtask.checkbox = null;
+                }
+            })
+            return subtasks;
         }
 
         function addNewTask(taskName) {
@@ -57,17 +79,41 @@
             return deferred.promise;
         }
 
-        function getDateTime(){
+        function getDateTime() {
             var today = new Date();
             var date = today.getDate() + ' ' + (today.getMonth() + 1) + ' ' + today.getFullYear();
-            var minutes = today.getMinutes().length < 2 ? '0' + today.getMinutes() : today.getMinutes();
-            var hours = today.getHours().length < 2 ? '0' + today.getHours() : today.getHours();
+            var minutes = today.getMinutes().toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            });
+            var hours = today.getHours().toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            });
             var dateTime = date + ' ' + hours + ':' + minutes;
 
             return {
                 dateTime: dateTime,
                 today: today,
             }
+        }
+
+        function onSubtaskComplete(subtask) {
+            let data = {
+                subTaskId: subtask.id,
+                companyId: $stateParams.companyId,
+                person: {id: $stateParams.personId},
+                taskDate: $stateParams.date,
+                na: false,
+                completed: true,
+                completedTime: getDateTime().dateTime,
+                completedDateTime: getDateTime().today,
+            }
+            let obj = {
+                data: data,
+                subtask: subtask
+            }
+            return updateResult(obj);
         }
 
         function onSubtaskNA(subtask) {
@@ -80,10 +126,28 @@
                 completed: false,
                 completedTime: getDateTime().dateTime,
                 completedDateTime: getDateTime().today,
-                result: subtask.result,
-                taskId: subtask.taskId,
             }
-            updateResult(data)
+            let obj = {
+                data: data,
+                subtask: subtask
+            }
+            return updateResult(obj);
+        }
+
+        function onSubtaskClear(subtask) {
+            let data = {
+                subTaskId: subtask.id,
+                companyId: $stateParams.companyId,
+                person: {id: $stateParams.personId},
+                taskDate: $stateParams.date,
+                na: false,
+                completed: false,
+            }
+            let obj = {
+                data: data,
+                subtask: subtask
+            }
+            return updateResult(obj);
         }
 
         function onSubtaskNote(subtask) {
@@ -95,16 +159,19 @@
                 note: subtask.note,
                 completedTime: getDateTime().dateTime,
                 completedDateTime: getDateTime().today,
-                result: subtask.result,
-                taskId: subtask.taskId,
             }
-            updateResult(data)
+            let obj = {
+                data: data,
+                subtask: subtask
+            }
+            return updateResult(obj);
         }
 
-        function updateResult(data){
+        function updateResult(obj) {
             var deferred = $q.defer();
-            if (data.result) {
-                $http.put('http://api-development.synergysuite.net/rest/checklists/subtasks/results/' + data.taskId, data).then((response) => {
+            if (obj.subtask.result) {
+                obj.data.id = obj.subtask.result.id;
+                $http.put('http://api-development.synergysuite.net/rest/checklists/subtasks/results/'+obj.subtask.result.id, obj.data).then((response) => {
                     deferred.resolve(response.data);
                 }).catch((error) => {
                     deferred.reject(error);
@@ -112,7 +179,7 @@
 
                 });
             } else {
-                $http.post('http://api-development.synergysuite.net/rest/checklists/subtasks/results/', data).then((response) => {
+                $http.post('http://api-development.synergysuite.net/rest/checklists/subtasks/results/', obj.data).then((response) => {
                     deferred.resolve(response.data);
                 }).catch((error) => {
                     deferred.reject(error);
@@ -120,6 +187,55 @@
 
                 });
             }
+            return deferred.promise;
+        }
+
+        function onCheckboxClick(subtask) {
+            console.log('check this sub',subtask)
+            if (!subtask.result) {
+                return onSubtaskComplete(subtask);
+            } else if (subtask.result.completed || subtask.result.na) {
+                console.log('clear')
+                return onSubtaskClear(subtask);
+            } else {
+                console.log('complete')
+                return onSubtaskComplete(subtask);
+            }
+        }
+
+        function getSubtaskDetails(subtaskId){
+            var deferred = $q.defer();
+            $http.get('http://api-development.synergysuite.net/rest/checklists/subtasks/'+subtaskId).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
+            });
+            return deferred.promise;
+        }
+
+        function onSubtaskUpdate(data){
+            var deferred = $q.defer();
+            $http.post('http://api-development.synergysuite.net/rest/checklists/subtasks/', data).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
+            });
+            return deferred.promise;
+        }
+
+        function deleteTask(subtaskId){
+            var deferred = $q.defer();
+            $http.delete('http://api-development.synergysuite.net/rest/checklists/subtasks/'+subtaskId).then((response) => {
+                deferred.resolve(response.data);
+            }).catch((error) => {
+                deferred.reject(error);
+            }).finally(() => {
+
+            });
             return deferred.promise;
         }
 

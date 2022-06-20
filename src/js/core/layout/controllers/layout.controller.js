@@ -8,25 +8,29 @@
         .module('app.core.layout')
         .controller('LayoutController', LayoutController);
 
-    LayoutController.$inject = ['$scope', '$state', 'ChecklistsService', '$mdDialog'];
+    LayoutController.$inject = ['$scope', '$state', 'ChecklistsService', '$mdDialog', '$rootScope', 'TasksService'];
 
     /**
      * LayoutController
      * @param $scope
      * @constructor
      */
-    function LayoutController($scope, $state, ChecklistsService, $mdDialog) {
+    function LayoutController($scope, $state, ChecklistsService, $mdDialog, $rootScope, TasksService) {
         var vm = this;
+        vm.data = '';
         vm.showBackBtn = false;
         vm.showDelBtn = false;
         vm.showChecklistSetupBtn = false;
+        vm.isTask = false;
         vm.onBackBtn = onBackBtn;
         vm.onDelBtn = onDelBtn;
         vm.showDialog = showDialog;
+        vm.onChecklistSetup = onChecklistSetup;
         vm.$onInit = onInit;
         $scope.$on("openSetup", onOpenSetup);
         $scope.$on("closeSetup", onCloseSetup);
-        $scope.$on("openTasks", onOpenTasks)
+        $scope.$on("openTasks", onOpenTasks);
+        $scope.$on("openTaskSetup", onOpenTaskSetup);
 
         function onInit() {
             if ($state.router.globals.params.checklistId) {
@@ -36,22 +40,32 @@
         }
 
         function onBackBtn() {
-            $state.go($state.current.previousState.name);
-            vm.showBackBtn = false;
-            vm.showDelBtn = false;
-            vm.showChecklistSetupBtn = false;
+            $state.go($rootScope.previousState.name,$rootScope.previousState.params);
+            if($rootScope.previousState.name == 'tasks'){
+                onOpenTasks()
+                }
+            else if($rootScope.previousState.name == 'tasksSetup'){
+                onOpenTaskSetup()
+            }else{
+                vm.showBackBtn = false;
+                vm.showDelBtn = false;
+                vm.showChecklistSetupBtn = false;
+            }
         }
 
         function onDelBtn() {
-            let data = {
-                title: 'Delete Checklist',
-                text: 'Are you sure that you want to delete the checklist?',
-            }
-            vm.showDialog(data).then(function (data) {
+            vm.showDialog(vm.data).then(function (data) {
                 if (data) {
-                    ChecklistsService.deleteChecklist($state.router.globals.params.checklistId).then(function () {
-                        onBackBtn()
-                    })
+                    if(vm.isTask){
+                        TasksService.deleteTask($state.router.globals.params.subtaskId).then(function (){
+                            onBackBtn()
+                        })
+                    }else{
+                        ChecklistsService.deleteChecklist($state.router.globals.params.checklistId).then(function () {
+                            onBackBtn()
+                        })
+                    }
+
                 }
             }).catch(function (data) {
                 console.log('catch', data)
@@ -61,8 +75,14 @@
         }
 
         function onOpenSetup(evt, data) {
+            vm.isTask = false;
+            vm.data = {
+                title: 'Delete Checklist',
+                text: 'Are you sure that you want to delete the checklist?',
+            }
             vm.showBackBtn = true;
             vm.showDelBtn = true;
+            vm.showChecklistSetupBtn = false;
         }
 
         function onCloseSetup(evt, data) {
@@ -81,10 +101,26 @@
             })
         }
 
-        function onOpenTasks(evt, data){
+        function onOpenTasks(evt, data) {
             vm.showBackBtn = true;
+            vm.showDelBtn = false;
             vm.showChecklistSetupBtn = true;
         }
 
+        function onOpenTaskSetup(evt, data){
+            vm.isTask = true;
+            vm.data = {
+                title: 'Delete Task',
+                text: 'Are you sure that you want to delete the task?',
+            }
+            vm.showBackBtn = true;
+            vm.showDelBtn = true;
+            vm.showChecklistSetupBtn = false;
+        }
+
+        function onChecklistSetup() {
+            $rootScope.$broadcast("openChecklistSetupFromHeader");
+            onOpenSetup();
+        }
     }
 })();

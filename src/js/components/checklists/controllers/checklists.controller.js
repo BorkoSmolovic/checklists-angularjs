@@ -8,9 +8,9 @@
         .module('app.components.checklists')
         .controller('ChecklistsController', ChecklistsController);
 
-    ChecklistsController.$inject = ['outlets', 'ChecklistsService', '$state', '$rootScope', '$mdDialog'];
+    ChecklistsController.$inject = ['outlets', 'ChecklistsService', '$state', '$rootScope', '$mdDialog', '$timeout'];
 
-    function ChecklistsController(outlets, ChecklistsService, $state, $rootScope, $mdDialog) {
+    function ChecklistsController(outlets, ChecklistsService, $state, $rootScope, $mdDialog, $timeout) {
 
         var vm = this;
         vm.outlets = outlets;
@@ -33,8 +33,8 @@
 
         function onInit() {
             if ($state.outlet) {
-                vm.selectedOutlet = $state.outlet
-                getChecklists($state.outlet)
+                    vm.selectedOutlet = $state.outlet
+                    getChecklists($state.outlet)
             }
         }
 
@@ -136,7 +136,7 @@
         }
 
         function openChecklistsTasks(checklistId){
-            ChecklistsService.openChecklistsTasks(checklistId)
+            ChecklistsService.openChecklistsTasks(checklistId,vm.selectedOutlet.id)
         }
     }
 })();

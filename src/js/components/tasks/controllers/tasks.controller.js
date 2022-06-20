@@ -8,9 +8,9 @@
         .module('app.components.tasks')
         .controller('TasksController', TasksController);
 
-    TasksController.$inject = ['tasks', 'TasksService', '$stateParams'];
+    TasksController.$inject = ['tasks', 'TasksService', '$stateParams', '$mdDialog', '$scope', '$state', '$rootScope'];
 
-    function TasksController(tasks, TasksService, $stateParams) {
+    function TasksController(tasks, TasksService, $stateParams, $mdDialog, $scope, $state, $rootScope) {
 
         var vm = this;
         vm.task = tasks;
@@ -23,15 +23,12 @@
         vm.onSubtaskNA = onSubtaskNA;
         vm.showDialog = showDialog;
         vm.onSubtaskNote = onSubtaskNote;
+        vm.onCheckboxClick = onCheckboxClick;
+        vm.onSubtaskSetup = onSubtaskSetup;
+        $scope.$on("openChecklistSetupFromHeader",openChecklistSetupFromHeader);
 
         function onAddBtnPress() {
             vm.showAddTaskBtn = false;
-        }
-
-        function updateSubtaskResults(subtasks){
-            subtasks.forEach(subtask => {
-                console.log('sub333',subtask)
-            })
         }
 
         function onTaskAdd() {
@@ -118,6 +115,23 @@
             }).finally(function (){
 
             });
+        }
+
+        function onCheckboxClick(subtask){
+            TasksService.onCheckboxClick(subtask).then(function (){
+                TasksService.getTasks($stateParams).then(function (data){
+                    vm.subTasks = data.subTasks;
+                });
+            });
+        }
+
+        function openChecklistSetupFromHeader(){
+            $state.go('checklistsSetup', {checklistId: vm.task.id});
+        }
+
+        function onSubtaskSetup(subtaskId){
+            $rootScope.$broadcast("openTaskSetup", subtaskId);
+            $state.go('tasksSetup', {subtaskId: subtaskId});
         }
     }
 })();

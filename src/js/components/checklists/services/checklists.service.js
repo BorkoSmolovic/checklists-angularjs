@@ -134,10 +134,10 @@
             $state.go('checklistsSetup', {checklistId: checklistId});
         }
 
-        function openChecklistsTasks(checklistId){
+        function openChecklistsTasks(checklistId,outletId){
             let data = {
                 'checklistId': checklistId,
-                'companyId': user.corporateId,
+                'companyId': outletId,
                 'personId': user.id,
                 'date': currentBusinessDate
             }

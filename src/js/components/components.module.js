@@ -12,6 +12,7 @@
             'app.components.checklists',
             'app.components.checklistsSetup',
             'app.components.tasks',
+            'app.components.tasksSetup',
         ]);
 
 })();
